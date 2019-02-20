@@ -20,6 +20,7 @@ pod 'RNCzNavigationview', :path => '../node_modules/react-native-cz-navigationvi
 pod install
 ```
 
+使用
 ```
 <NavigationView
     title={'测试标题'}
