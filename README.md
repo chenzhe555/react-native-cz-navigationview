@@ -1,45 +1,76 @@
 
-# react-native-cz-navigationview
+## Manual installation
 
-## Getting started
+npm install react-native-cz-navigationview --save
 
-`$ npm install react-native-cz-navigationview --save`
-
-### Mostly automatic installation
-
-`$ react-native link react-native-cz-navigationview`
-
-### Manual installation
-
-
-#### iOS
-
-1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
-2. Go to `node_modules` ➜ `react-native-cz-navigationview` and add `RNCzNavigationview.xcodeproj`
-3. In XCode, in the project navigator, select your project. Add `libRNCzNavigationview.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
-4. Run your project (`Cmd+R`)<
-
-#### Android
-
-1. Open up `android/app/src/main/java/[...]/MainActivity.java`
-  - Add `import com.chenzhe.navigationview.RNCzNavigationviewPackage;` to the imports at the top of the file
-  - Add `new RNCzNavigationviewPackage()` to the list returned by the `getPackages()` method
-2. Append the following lines to `android/settings.gradle`:
-  	```
-  	include ':react-native-cz-navigationview'
-  	project(':react-native-cz-navigationview').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-cz-navigationview/android')
-  	```
-3. Insert the following lines inside the dependencies block in `android/app/build.gradle`:
-  	```
-      compile project(':react-native-cz-navigationview')
-  	```
-
+	
 
 ## Usage
-```javascript
-import RNCzNavigationview from 'react-native-cz-navigationview';
-
-// TODO: What to do with the module?
-RNCzNavigationview;
+###  1.引入组件
 ```
+import NavigationView from 'react-native-cz-navigationview';
+```
+
+iOS: 在Podfile中加入
+```
+pod 'RNCzNavigationview', :path => '../node_modules/react-native-cz-navigationview/ios/RNCzNavigationview.podspec'
+```
+然后执行
+```
+pod install
+```
+
+```
+<NavigationView
+    title={'测试标题'}
+    back={this._back}
+    evaluateView={ (navigationView) => {this.navigationView = navigationView}}
+/>
+```
+
+###  2.属性:
+```
+title: 如果不自定义中间的组件，则默认显示标题 title字段
+```
+```
+mainStyle: 总视图样式
+```
+```
+leftView: 自定义左边视图 <View></View>
+```
+```
+backTitle: 如果没有自定义左边视图，则默认有返回箭头，箭头右边也可加入文本信息backTitle
+```
+```
+centerView: 自定义中间视图 <View></View>
+```
+```
+rightView: 自定义右边视图 <View></View>
+```
+```
+topSpace: 有时候就算调用了RNCzNavigationview.getTopSpace，获取到了Space高度，有的页面还先于创建的话，可以直接赋值进来。
+```
+
+###  3.属性方法:
+```
+evaluateView: 赋值当前视图对象
+```
+
+###  4.供外部调用的方法:
+```
+/*
+* 修改显示的标题
+* */
+this.navigationView.modifyTitle(title = '')
+```
+
+###  5.重要说明!
+因为iPhoneX顶部遮挡了，所以支持整体下移topSpace高度，但是需要在RN入口初始化高度，如果第一个Component加载时有可能异步还没获取高度，所以也可以在NavigationView传入属性topSpace高度（理论上最多只有一个Component需要这么做）。
+```
+//如果没有调用过原生方法获取Space，则获取一次
+RNCzNavigationview.getTopSpace( (result) => {
+    NavigationView.TopSpace = result;
+});
+```
+
   
