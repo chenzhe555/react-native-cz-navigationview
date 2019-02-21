@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, NativeModules } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image, NativeModules, Platform } from 'react-native';
 const { RNCzNavigationview } = NativeModules;
 
 /*
