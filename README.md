@@ -73,6 +73,3 @@ RNCzNavigationview.getTopSpace( (result) => {
     NavigationView.TopSpace = result;
 });
 ```
-
-  
-测试123
