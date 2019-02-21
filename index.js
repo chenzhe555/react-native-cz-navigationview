@@ -27,6 +27,14 @@ export default class CZNavigationView extends Component{
     }
 
     componentDidMount() {
+        //如果未获取顶部Space，则先获取一次
+        if (typeof CZNavigationView.TopSpace == 'undefined') {
+            RNCzNavigationview.getTopSpace( (result) => {
+                CZNavigationView.TopSpace = result;
+                this.topSpace = result;
+                this.forceUpdate();
+            });
+        }
         if (this.props.evaluateView) this.props.evaluateView(this);
     }
     /************************** 继承方法 **************************/

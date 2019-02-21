@@ -65,13 +65,4 @@ evaluateView: 赋值当前视图对象
 this.navigationView.modifyTitle(title = '')
 ```
 
-###  5.重要说明!
-因为iPhoneX顶部遮挡了，所以支持整体下移topSpace高度，但是需要在RN入口初始化高度，如果第一个Component加载时有可能异步还没获取高度，所以也可以在NavigationView传入属性topSpace高度（理论上最多只有一个Component需要这么做）。
-```
-//如果没有调用过原生方法获取Space，则获取一次
-RNCzNavigationview.getTopSpace( (result) => {
-    NavigationView.TopSpace = result;
-});
-```
-
   
