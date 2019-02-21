@@ -10,7 +10,7 @@ const { RNCzNavigationview } = NativeModules;
 * backTitle: 如果没有自定义左边视图，则默认有返回箭头，箭头右边也可加入文本信息backTitle
 * centerView: 自定义中间视图 <View></View>
 * rightView: 自定义右边视图 <View></View>
-* topSpace: 有时候就算调用了RNCzNavigationview.getTopSpace，获取到了Space高度，有的页面还先于创建的话，可以直接赋值进来。
+* topSpace: 自定义顶部多余Space，比如iPhoneX会多出22。（PS：组件已处理这些了这些情况，如果不是特殊情况，不需要考虑）
 *
 * func:
 * evaluateView: 赋值当前视图对象
@@ -27,8 +27,8 @@ export default class CZNavigationView extends Component{
     }
 
     componentDidMount() {
-        //如果未获取顶部Space，则先获取一次
-        if (typeof CZNavigationView.TopSpace == 'undefined' && Platform.OS == 'ios') {
+        //如果未设置topSpace并且获取顶部Space，则先获取一次顶部多余间隙（iOS）
+        if (typeof this.props.topSpace == 'undefined' && typeof CZNavigationView.TopSpace == 'undefined' && Platform.OS == 'ios') {
             RNCzNavigationview.getTopSpace( (result) => {
                 CZNavigationView.TopSpace = result;
                 this.topSpace = result;

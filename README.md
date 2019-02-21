@@ -49,7 +49,7 @@ centerView: 自定义中间视图 <View></View>
 rightView: 自定义右边视图 <View></View>
 ```
 ```
-topSpace: 有时候就算调用了RNCzNavigationview.getTopSpace，获取到了Space高度，有的页面还先于创建的话，可以直接赋值进来。
+topSpace: 自定义顶部多余Space，比如iPhoneX会多出22。（PS：组件已处理这些了这些情况，如果不是特殊情况，不需要考虑）
 ```
 
 ###  3.属性方法:
