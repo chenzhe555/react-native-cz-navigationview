@@ -40,7 +40,10 @@ mainStyle: 总视图样式
 leftView: 自定义左边视图 <View></View>
 ```
 ```
-backTitle: 如果没有自定义左边视图，则默认有返回箭头，箭头右边也可加入文本信息backTitle
+backTitle: 如果没有自定义左边视图，则默认有返回箭头(isNotBack也可置为没有)，箭头右边也可加入文本信息backTitle
+```
+```
+isNotBack: 默认没有返回箭头
 ```
 ```
 centerView: 自定义中间视图 <View></View>

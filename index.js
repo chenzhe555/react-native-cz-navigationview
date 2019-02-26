@@ -7,7 +7,8 @@ const { RNCzNavigationview } = NativeModules;
 * title: 如果不自定义中间的组件，则默认显示标题 title字段
 * mainStyle: 总视图样式
 * leftView: 自定义左边视图 <View></View>
-* backTitle: 如果没有自定义左边视图，则默认有返回箭头，箭头右边也可加入文本信息backTitle
+* backTitle: 如果没有自定义左边视图，则默认有返回箭头(isNotBack也可置为没有)，箭头右边也可加入文本信息backTitle
+* isNotBack: 默认没有返回箭头
 * centerView: 自定义中间视图 <View></View>
 * rightView: 自定义右边视图 <View></View>
 * topSpace: 自定义顶部多余Space，比如iPhoneX会多出22。（PS：组件已处理这些了这些情况，如果不是特殊情况，不需要考虑）
@@ -90,7 +91,7 @@ export default class CZNavigationView extends Component{
 
         //左边视图
         let leftView = this.props.leftView;
-        if (!leftView) {
+        if (!leftView && !this.props.isNotBack) {
             leftView = (
                 <TouchableOpacity onPress={this._back}>
                     <View style={[styles.DefaultLeftView]}>
