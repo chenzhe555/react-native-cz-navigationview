@@ -96,7 +96,11 @@ export default class CZNavigationView extends Component{
                 <TouchableOpacity onPress={this._back}>
                     <View style={[styles.DefaultLeftView]}>
                         <Image style={[styles.DefaultBackImageView]} source={require('./images/back-black.png')}/>
-                        <Text>{this.props.backTitle ? this.props.backTitle : ''}</Text>
+                        {
+                            this.props.backTitle ? (
+                                <Text style={[styles.BackTitleView]}>{this.props.backTitle}</Text>
+                            ) : null
+                        }
                     </View>
                 </TouchableOpacity>
             );
@@ -169,5 +173,10 @@ const styles = StyleSheet.create({
         height: 16,
         marginLeft: 15,
         marginRight: 15
+    },
+
+    BackTitleView: {
+        fontSize: 16,
+        marginLeft: -10
     }
 })
