@@ -58,6 +58,7 @@ export default class CZNavigationView extends Component{
     * 获取高度64以外的高度
     * */
     static getTopSpace = () => {
+        if (Platform.OS == 'android') return 0;
         return this.TopSpace ? this.TopSpace : 0;
     }
     /************************** 子组件回调方法 **************************/
