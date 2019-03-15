@@ -58,7 +58,6 @@ export default class CZNavigationView extends Component{
     * 获取高度64以外的高度
     * */
     static getTopSpace = () => {
-        if (Platform.OS == 'android') return 0;
         return this.TopSpace ? this.TopSpace : 0;
     }
     /************************** 子组件回调方法 **************************/
@@ -118,13 +117,16 @@ export default class CZNavigationView extends Component{
         //右边视图
         let rightView = this.props.rightView;
 
+        //安卓的不需要顶部这20高度
+        let topOriginHeight = Platform.OS == 'ios' ? 20 : 0; 
+
         return (
             <View style={[mainStyles]}>
-                <View style={[{height: topSpace + 20}]}></View>
+                <View style={[{height: topSpace + topOriginHeight}]}></View>
                 <View style={[styles.CenterMainView]}>
                     {centerView}
                 </View>
-                <View style={[styles.LeftAndRightMainView, {marginTop: (20 + topSpace)}]}>
+                <View style={[styles.LeftAndRightMainView, {marginTop: (topOriginHeight + topSpace)}]}>
                     {leftView}
                     {rightView}
                 </View>
