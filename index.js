@@ -83,9 +83,11 @@ export default class CZNavigationView extends Component{
         const { topSpace } = this;
         const { title } = this.state;
 
+        //安卓的不需要顶部这20高度
+        let topOriginHeight = Platform.OS == 'ios' ? 20 : 0; 
         //总视图样式
         let mainStyles = [styles.MainView, {
-            height: topSpace + 64
+            height: topSpace + topOriginHeight + 44
         }];
         if (this.props.mainStyle) mainStyles.push(this.props.mainStyle);
 
@@ -116,9 +118,6 @@ export default class CZNavigationView extends Component{
 
         //右边视图
         let rightView = this.props.rightView;
-
-        //安卓的不需要顶部这20高度
-        let topOriginHeight = Platform.OS == 'ios' ? 20 : 0; 
 
         return (
             <View style={[mainStyles]}>
