@@ -12,7 +12,10 @@ RCT_EXPORT_METHOD(getTopSpace:(RCTResponseSenderBlock)callback)
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         //目前只有iPhoneX
-        BOOL isIPhoneX = [UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO;
+        BOOL isHaveSafeArea = NO;
+        if (@available(iOS 11.0, *)) {
+            isHaveSafeArea = [[[[UIApplication sharedApplication] delegate] window] safeAreaInsets].bottom > 0;
+        }
         callback(@[@(isIPhoneX ? 22 : 0)]);
     });
 }
