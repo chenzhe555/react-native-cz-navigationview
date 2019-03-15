@@ -11,12 +11,12 @@ RCT_EXPORT_MODULE()
 RCT_EXPORT_METHOD(getTopSpace:(RCTResponseSenderBlock)callback)
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        //目前只有iPhoneX
+        // iPhone X、XR、XS、XS Max  有安全区域的
         BOOL isHaveSafeArea = NO;
         if (@available(iOS 11.0, *)) {
             isHaveSafeArea = [[[[UIApplication sharedApplication] delegate] window] safeAreaInsets].bottom > 0;
         }
-        callback(@[@(isIPhoneX ? 22 : 0)]);
+        callback(@[@(isHaveSafeArea ? 22 : 0)]);
     });
 }
 @end
